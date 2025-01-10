@@ -103,3 +103,18 @@ function hideAllAnswers() {
         explanation.style.display = "none";
     });
 }
+
+// Show or hide the Back to Top button
+window.onscroll = function() {
+    const button = document.getElementById('backToTop');
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        button.style.display = "block";
+    } else {
+        button.style.display = "none";
+    }
+};
+
+// Scroll to the top of the page
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}

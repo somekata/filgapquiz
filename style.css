@@ -70,6 +70,7 @@ main h2 {
 .filter-input {
     width: 100%;
     padding: 10px;
+    margin-left:20px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -151,3 +152,64 @@ footer p {
     background-color: #1669c3;
     transform: scale(1.1);
 }
+
+.view-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+}
+
+.answer-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.answer-buttons button {
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+}
+
+.answer-buttons button:hover {
+    background-color: #0056b3;
+}
+  
+  .view-toggle button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #1a73e8;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .view-toggle button:hover {
+    background-color: #005cbf;
+  }
+  
+  .question-block, .quiz-block {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f9fafb;
+  }
+  #clearButton {
+    background-color: #f44336; /* Red background */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#clearButton:hover {
+    background-color: #d32f2f; /* Darker red */
+}
+  

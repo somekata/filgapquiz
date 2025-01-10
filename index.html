@@ -31,13 +31,41 @@
         </nav>
       </div>
     </header>
-    <input
-      type="text"
-      id="searchInput"
-      class="filter-input"
-      placeholder="問題文の検索ができます"
-      onkeyup="filterTable()"
-    />
+    <div class="view-toggle">
+      <button onclick="switchView('table')">Table View</button>
+      <button onclick="switchView('vertical')">Vertical View</button>
+      <div class="answer-buttons">
+        <button
+          id="showAllAnswersButton"
+          style="display: none"
+          onclick="showAllAnswers()"
+        >
+          Show All Answers
+        </button>
+        <button
+          id="hideAllAnswersButton"
+          style="display: none"
+          onclick="hideAllAnswers()"
+        >
+          Hide All Answers
+        </button>
+      </div>
+    </div>
+
+    <div id="content">
+      <!-- Content dynamically rendered here -->
+    </div>
+
+    <div style="position: relative; display: inline-block">
+      <input
+        type="text"
+        id="searchInput"
+        class="filter-input"
+        placeholder="Search here..."
+        onkeyup="filterTable()"
+      />
+    </div>
+
     <table id="questionsTable">
       <thead>
         <tr>
@@ -1204,6 +1232,7 @@
         </tr>
       </tbody>
     </table>
+
     <footer>
       <div class="footer-container">
         <p>&copy; 2025 Fil-GAP. All rights reserved.</p>

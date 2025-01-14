@@ -72,16 +72,20 @@ function switchView(view) {
 function toggleAnswer(index) {
     const answer = document.getElementById(`answer-${index}`);
     const explanation = document.getElementById(`explanation-${index}`);
+    const button = answer.closest('.question-block').querySelector('button');
     const isVisible = answer.style.display === "block";
 
     answer.style.display = isVisible ? "none" : "block";
     explanation.style.display = isVisible ? "none" : "block";
+    button.textContent = isVisible ? "Show Answer" : "Hide Answer";
 }
+
 
 // Show All Answers
 function showAllAnswers() {
     const answers = document.querySelectorAll("[id^='answer-']");
     const explanations = document.querySelectorAll("[id^='explanation-']");
+    const buttons = document.querySelectorAll(".question-block button");
 
     answers.forEach(answer => {
         answer.style.display = "block";
@@ -89,18 +93,25 @@ function showAllAnswers() {
     explanations.forEach(explanation => {
         explanation.style.display = "block";
     });
+    buttons.forEach(button => {
+        button.textContent = "Hide Answer";
+    });
 }
 
 // Hide All Answers
 function hideAllAnswers() {
     const answers = document.querySelectorAll("[id^='answer-']");
     const explanations = document.querySelectorAll("[id^='explanation-']");
+    const buttons = document.querySelectorAll(".question-block button");
 
     answers.forEach(answer => {
         answer.style.display = "none";
     });
     explanations.forEach(explanation => {
         explanation.style.display = "none";
+    });
+    buttons.forEach(button => {
+        button.textContent = "Show Answer";
     });
 }
 

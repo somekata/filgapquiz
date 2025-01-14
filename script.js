@@ -48,7 +48,7 @@ function switchView(view) {
                     .map((row, index) => {
                         const cells = row.querySelectorAll("td");
                         const choices = Array.from(cells[1].querySelectorAll("li"))
-                            .map(choice => `<li style='margin-left:20px;'>${choice.innerText}</li>`)
+                            .map(choice => `<li style='margin-left:20px;'>${choice.innerHTML}</li>`)
                             .join("");
     
                         return `

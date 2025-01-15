@@ -47,24 +47,31 @@ function switchView(view) {
                 content.innerHTML = Array.from(rows)
                     .map((row, index) => {
                         const cells = row.querySelectorAll("td");
+                        
+                        // 問題文を選択肢 (<ol>) を除外して抽出
+                        const problemText = cells[1].innerHTML
+                            .replace(cells[1].querySelector("ol").outerHTML, "")
+                            .trim();
+            
+                        // 選択肢を抽出
                         const choices = Array.from(cells[1].querySelectorAll("li"))
                             .map(choice => `<li style='margin-left:20px;'>${choice.innerHTML}</li>`)
                             .join("");
-    
+            
                         return `
                             <div class="question-block">
-                                <h3>${cells[1].childNodes[0].nodeValue.trim()}</h3>
+                                <h3>${problemText}</h3>
                                 <ol class="choices" style="list-style-type: lower-alpha;">
                                     ${choices}
                                 </ol>
                                 <p id="answer-${index}" style="display:none;"><strong>Answer:</strong> ${cells[2].innerHTML}</p>
                                 <p id="explanation-${index}" style="display:none;"><strong>Explanation:</strong> ${cells[3].innerHTML}</p>
+                                <p id="domain-${index}" style="display:none;"><strong>領域:</strong> ${cells[4].innerHTML}</p>
                                 <button onclick="toggleAnswer(${index})">Show Answer</button>
                             </div>`;
                     })
                     .join("");
-                break;
-            
+                break;               
     }
 }
 
@@ -72,11 +79,13 @@ function switchView(view) {
 function toggleAnswer(index) {
     const answer = document.getElementById(`answer-${index}`);
     const explanation = document.getElementById(`explanation-${index}`);
+    const domain = document.getElementById(`domain-${index}`);
     const button = answer.closest('.question-block').querySelector('button');
     const isVisible = answer.style.display === "block";
 
     answer.style.display = isVisible ? "none" : "block";
     explanation.style.display = isVisible ? "none" : "block";
+    domain.style.display = isVisible ? "none" : "block";
     button.textContent = isVisible ? "Show Answer" : "Hide Answer";
 }
 
@@ -85,6 +94,7 @@ function toggleAnswer(index) {
 function showAllAnswers() {
     const answers = document.querySelectorAll("[id^='answer-']");
     const explanations = document.querySelectorAll("[id^='explanation-']");
+    const domains = document.querySelectorAll("[id^='domain-']");
     const buttons = document.querySelectorAll(".question-block button");
 
     answers.forEach(answer => {
@@ -92,6 +102,9 @@ function showAllAnswers() {
     });
     explanations.forEach(explanation => {
         explanation.style.display = "block";
+    });
+    domains.forEach(domain => {
+        domain.style.display = "block";
     });
     buttons.forEach(button => {
         button.textContent = "Hide Answer";
@@ -102,6 +115,7 @@ function showAllAnswers() {
 function hideAllAnswers() {
     const answers = document.querySelectorAll("[id^='answer-']");
     const explanations = document.querySelectorAll("[id^='explanation-']");
+    const domains = document.querySelectorAll("[id^='domain-']");
     const buttons = document.querySelectorAll(".question-block button");
 
     answers.forEach(answer => {
@@ -109,6 +123,9 @@ function hideAllAnswers() {
     });
     explanations.forEach(explanation => {
         explanation.style.display = "none";
+    });
+    domains.forEach(domain => {
+        domain.style.display = "none";
     });
     buttons.forEach(button => {
         button.textContent = "Show Answer";
@@ -129,3 +146,4 @@ window.onscroll = function() {
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+

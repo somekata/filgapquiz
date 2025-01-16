@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fil-GAP Quiz Application v1.0.1</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="top.css" />
   </head>
   <body>
     <header>
@@ -1368,9 +1369,11 @@
         <p>&copy; 2025 Fil-GAP. All rights reserved.</p>
       </div>
     </footer>
-
-    <button id="backToTop" onclick="scrollToTop()">&#8679;</button>
-
+    <div id="scrollToTop" style="display: none">
+      <img src="#" alt="Top" id="topImage" />
+    </div>
+    <!--<button id="backToTop" onclick="scrollToTop()">&#8679;</button>-->
+    <script src="top.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

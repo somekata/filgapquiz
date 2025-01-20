@@ -31,8 +31,11 @@
       </div>
     </header>
     <div class="view-toggle">
-      <button onclick="switchView('table')">Table View</button>
-      <button onclick="switchView('vertical')">Vertical View</button>
+      <label for="viewSelect">表示切替:</label>
+      <select id="viewSelect" onchange="switchView(this.value)">
+        <option value="table">Table View</option>
+        <option value="vertical">Vertical View</option>
+      </select>
       <div class="answer-buttons">
         <button
           id="showAllAnswersButton"

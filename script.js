@@ -27,53 +27,47 @@ function filterTable() {
 function switchView(view) {
     const content = document.getElementById("content");
     const rows = document.querySelectorAll("#questionsTable tbody tr");
-
-    // Clear content to avoid overlap
-    content.innerHTML = "";
-
+  
+    content.innerHTML = ""; // Clear content to avoid overlap
+  
     switch (view) {
-        case "table":
-            document.getElementById("searchInput").style.display = "block"; // Show searchInput
-            document.getElementById("questionsTable").style.display = "table"; // Show the table
-            document.getElementById("showAllAnswersButton").style.display = "none"; // Hide the Show All Answers button
-            document.getElementById("hideAllAnswersButton").style.display = "none"; // Hide the Hide All Answers button
-            break;
-
-            case "vertical":
-                document.getElementById("searchInput").style.display = "none"; // Hide searchInput
-                document.getElementById("questionsTable").style.display = "none"; // Hide the table
-                document.getElementById("showAllAnswersButton").style.display = "block"; // Show the Show All Answers button
-                document.getElementById("hideAllAnswersButton").style.display = "block"; // Show the Hide All Answers button
-                content.innerHTML = Array.from(rows)
-                    .map((row, index) => {
-                        const cells = row.querySelectorAll("td");
-                        
-                        // 問題文を選択肢 (<ol>) を除外して抽出
-                        const problemText = cells[1].innerHTML
-                            .replace(cells[1].querySelector("ol").outerHTML, "")
-                            .trim();
-            
-                        // 選択肢を抽出
-                        const choices = Array.from(cells[1].querySelectorAll("li"))
-                            .map(choice => `<li style='margin-left:20px;'>${choice.innerHTML}</li>`)
-                            .join("");
-            
-                        return `
-                            <div class="question-block">
-                                <h3>${problemText}</h3>
-                                <ol class="choices" style="list-style-type: lower-alpha;">
-                                    ${choices}
-                                </ol>
-                                <p id="answer-${index}" style="display:none;"><strong>Answer:</strong> ${cells[2].innerHTML}</p>
-                                <p id="explanation-${index}" style="display:none;"><strong>Explanation:</strong> ${cells[3].innerHTML}</p>
-                                <p id="domain-${index}" style="display:none;"><strong>領域:</strong> ${cells[4].innerHTML}</p>
-                                <button onclick="toggleAnswer(${index})">Show Answer</button>
-                            </div>`;
-                    })
-                    .join("");
-                break;               
+      case "table":
+        document.getElementById("searchInput").style.display = "block";
+        document.getElementById("questionsTable").style.display = "table";
+        document.getElementById("showAllAnswersButton").style.display = "none";
+        document.getElementById("hideAllAnswersButton").style.display = "none";
+        break;
+  
+      case "vertical":
+        document.getElementById("searchInput").style.display = "none";
+        document.getElementById("questionsTable").style.display = "none";
+        document.getElementById("showAllAnswersButton").style.display = "block";
+        document.getElementById("hideAllAnswersButton").style.display = "block";
+        content.innerHTML = Array.from(rows)
+          .map((row, index) => {
+            const cells = row.querySelectorAll("td");
+            const problemText = cells[1].innerHTML.replace(cells[1].querySelector("ol").outerHTML, "").trim();
+            const choices = Array.from(cells[1].querySelectorAll("li"))
+              .map(choice => `<li style='margin-left:20px;'>${choice.innerHTML}</li>`)
+              .join("");
+  
+            return `
+              <div class="question-block">
+                <h3>${problemText}</h3>
+                <ol class="choices" style="list-style-type: lower-alpha;">
+                  ${choices}
+                </ol>
+                <p id="answer-${index}" style="display:none;"><strong>Answer:</strong> ${cells[2].innerHTML}</p>
+                <p id="explanation-${index}" style="display:none;"><strong>Explanation:</strong> ${cells[3].innerHTML}</p>
+                <p id="domain-${index}" style="display:none;"><strong>領域:</strong> ${cells[4].innerHTML}</p>
+                <button onclick="toggleAnswer(${index})">Show Answer</button>
+              </div>`;
+          })
+          .join("");
+        break;
     }
-}
+  }
+  
 
 // Toggle Answer Visibility
 function toggleAnswer(index) {

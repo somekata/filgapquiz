@@ -126,3 +126,22 @@ main p.version-info {
     background-color: #45a049;
     transform: scale(1.1);
 }
+
+#viewSelect {
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  #viewSelect:hover {
+    border-color: #1a73e8;
+  }
+  
+  #relatedPagesSection {
+    margin-top: 20px;
+  }
+  
